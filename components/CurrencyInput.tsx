@@ -18,11 +18,19 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioBufferRef = useRef<AudioBuffer | null>(null);
   const selected = ALL_CURRENCIES.find((c) => c.code === selectedCode)!;
 
   useEffect(() => {
-    audioRef.current = new Audio("/sounds/multhit1.ogg");
+    const ctx = new AudioContext();
+    audioCtxRef.current = ctx;
+    fetch("/sounds/multhit1.mp3")
+      .then((r) => r.arrayBuffer())
+      .then((buf) => ctx.decodeAudioData(buf))
+      .then((decoded) => { audioBufferRef.current = decoded; })
+      .catch(() => {});
+    return () => { ctx.close(); };
   }, []);
 
   useEffect(() => {
@@ -36,10 +44,13 @@ export default function CurrencyInput({
   }, []);
 
   const playKeySound = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play();
-    }
+    const ctx = audioCtxRef.current;
+    const buffer = audioBufferRef.current;
+    if (!ctx || !buffer) return;
+    const source = ctx.createBufferSource();
+    source.buffer = buffer;
+    source.connect(ctx.destination);
+    source.start(0);
   }, []);
 
   return (

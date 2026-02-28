@@ -2,11 +2,21 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CurrencyInput from "@/components/CurrencyInput";
 
-// Mock Audio since jsdom doesn't support it
-global.Audio = jest.fn().mockImplementation(() => ({
-  play: jest.fn(),
-  currentTime: 0,
-})) as unknown as typeof Audio;
+// Mock AudioContext and fetch since jsdom doesn't support them
+global.fetch = jest.fn().mockResolvedValue({
+  arrayBuffer: jest.fn().mockResolvedValue(new ArrayBuffer(0)),
+}) as unknown as typeof fetch;
+
+global.AudioContext = jest.fn().mockImplementation(() => ({
+  decodeAudioData: jest.fn().mockResolvedValue({}),
+  createBufferSource: jest.fn().mockReturnValue({
+    buffer: null,
+    connect: jest.fn(),
+    start: jest.fn(),
+  }),
+  destination: {},
+  close: jest.fn(),
+})) as unknown as typeof AudioContext;
 
 const defaultProps = {
   amount: "100",
