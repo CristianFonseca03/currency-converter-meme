@@ -1,13 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import ExchangeResults from "@/components/ExchangeResults";
+import { ALL_CURRENCIES, FICTIONAL_CURRENCIES } from "@/lib/currencies";
 
-const mockConversions: Record<string, number> = {
-  COP: 4000,
-  MXN: 17,
-  GNS: 1,
-  BAL: 0.1,
-  SLK: 0.05,
-};
+// Build conversions dynamically so the test doesn't depend on hardcoded currency codes
+const mockConversions: Record<string, number> = Object.fromEntries(
+  ALL_CURRENCIES.map((c) => [c.code, 42])
+);
 
 describe("ExchangeResults", () => {
   it("renders the RESULTADOS header", () => {
@@ -31,7 +29,8 @@ describe("ExchangeResults", () => {
     );
     expect(screen.getByText("COP")).toBeInTheDocument();
     expect(screen.getByText("MXN")).toBeInTheDocument();
-    expect(screen.getByText("GNS")).toBeInTheDocument();
+    // Check first fictional currency dynamically
+    expect(screen.getByText(FICTIONAL_CURRENCIES[0].code)).toBeInTheDocument();
   });
 
   it("does not render the selected currency in results", () => {
