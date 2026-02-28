@@ -18,8 +18,12 @@ export default function CurrencyInput({
 }: CurrencyInputProps) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const selected = ALL_CURRENCIES.find((c) => c.code === selectedCode)!;
+
+  useEffect(() => {
+    audioRef.current = new Audio("/sounds/multhit1.ogg");
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -32,20 +36,10 @@ export default function CurrencyInput({
   }, []);
 
   const playKeySound = useCallback(() => {
-    if (!audioCtxRef.current) {
-      audioCtxRef.current = new AudioContext();
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
     }
-    const ctx = audioCtxRef.current;
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.frequency.setValueAtTime(1200, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.05);
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.07);
   }, []);
 
   return (
