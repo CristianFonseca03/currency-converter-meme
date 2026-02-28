@@ -1,69 +1,74 @@
-# Copilot Instructions
+# Instrucciones para Copilot
 
-## Project Overview
+## Descripción del proyecto
 
-A currency converter web application built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS v4**. Converts between real currencies (USD, COP, MXN) via ExchangeRate-API and fictional currencies (Gansito, Balatro, Silksong) whose data is stored in a JSON file.
+Aplicación web de conversión de monedas construida con **Next.js 16**, **React 19**, **TypeScript** y **Tailwind CSS v4**. Convierte entre monedas reales (USD, COP, MXN) mediante ExchangeRate-API y monedas ficticias (Gansito, Balatro, Silksong) cuyos datos están almacenados en un archivo JSON.
 
 ## Stack
 
 - **Framework**: Next.js 16 (App Router)
-- **Language**: TypeScript 5 (strict)
+- **Lenguaje**: TypeScript 5 (strict)
 - **Runtime**: React 19
-- **Styling**: Tailwind CSS v4 (CSS-based config in `app/globals.css`, no `tailwind.config.ts`)
-- **Package manager**: npm
+- **Estilos**: Tailwind CSS v4 (configuración basada en CSS en `app/globals.css`, sin `tailwind.config.ts`)
+- **Gestor de paquetes**: npm
 
-## Commands
+## Comandos
 
 ```bash
-npm run dev        # Start dev server (localhost:3000)
-npm run build      # Production build
-npm run start      # Start production server
-npm run lint       # Run ESLint
+npm run dev        # Iniciar servidor de desarrollo (localhost:3000)
+npm run build      # Build de producción
+npm run start      # Iniciar servidor de producción
+npm run lint       # Ejecutar ESLint
+npm test           # Ejecutar pruebas con Jest
 ```
 
-## Architecture
+## Arquitectura
 
 ```
 app/
-  page.tsx               # Server Component — fetches initial exchange rates, renders layout
-  layout.tsx             # Root layout with dark bg
-  globals.css            # Tailwind v4 config + base styles
-  api/rates/route.ts     # GET Route Handler — calls ExchangeRate-API, cached 1h
+  page.tsx               # Server Component — obtiene tasas de cambio iniciales y renderiza el layout
+  layout.tsx             # Layout raíz con fondo oscuro
+  globals.css            # Configuración Tailwind v4 + estilos base
+  api/rates/route.ts     # GET Route Handler — llama a ExchangeRate-API, caché de 1h
 components/
-  ConverterClient.tsx    # "use client" root: holds amount/currency/rates state
-  CurrencyInput.tsx      # Amount input + currency dropdown
-  ExchangeResults.tsx    # Results list with refresh button
-  CurrencyResultRow.tsx  # Single result row (icon, badge, converted amount)
+  ConverterClient.tsx    # Raíz "use client": maneja el estado de monto/moneda/tasas
+  CurrencyInput.tsx      # Input de monto + dropdown de selección de moneda
+  ExchangeResults.tsx    # Lista de resultados
+  CurrencyResultRow.tsx  # Fila individual de resultado (ícono, badge, monto convertido)
 data/
-  fictional-currencies.json  # Edit this to add/modify fictional currencies
+  fictional-currencies.json  # Editar para agregar/modificar monedas ficticias
 lib/
-  currencies.ts          # Currency definitions + convertAll() logic
+  currencies.ts          # Definición de monedas + lógica de convertAll()
 types/
-  currency.ts            # Shared TypeScript interfaces
-.env.local               # EXCHANGERATE_API_KEY (never commit)
+  currency.ts            # Interfaces TypeScript compartidas
+.env.local               # EXCHANGERATE_API_KEY (nunca hacer commit)
 ```
 
-## Conversion Logic
+## Lógica de conversión
 
-All conversions pivot through USD (`lib/currencies.ts`):
-1. `amount (source) → USD` using live rates for FIAT, `usdEquivalent` field for fictional
-2. `USD → target` using the same rates
+Todas las conversiones pasan por USD (`lib/currencies.ts`):
+1. `monto (origen) → USD` usando tasas en vivo para FIAT, campo `usdEquivalent` para ficticias
+2. `USD → destino` usando las mismas tasas
 
-## Fictional Currencies
+## Monedas ficticias
 
-Defined in `data/fictional-currencies.json`. Each entry:
+Definidas en `data/fictional-currencies.json`. Cada entrada:
 ```json
 { "code": "BAL", "name": "Balatro", "emoji": "🃏", "badge": "GAME", "usdEquivalent": 10 }
 ```
-`usdEquivalent` = how many USD 1 unit is worth. To add a new currency, append to the JSON — no code changes needed.
+`usdEquivalent` = cuántos USD vale 1 unidad. Para agregar una moneda nueva, solo agregar al JSON — no se requieren cambios en el código.
 
-## Key Conventions
+## Convenciones clave
 
-- **App Router**: `page.tsx` is a Server Component that fetches data and passes it as props to `ConverterClient` (client component). Avoids client-side fetch on initial render.
-- **Tailwind v4**: Uses arbitrary values (`bg-[#0D1117]`, `bg-[#161B22]`) — no config file needed. All theme vars in `globals.css`.
-- **Environment variables**: `EXCHANGERATE_API_KEY` in `.env.local`, no `NEXT_PUBLIC_` prefix — only read server-side.
-- **Fallback rates**: `page.tsx` has hardcoded fallback rates so the app renders without an API key (useful during development).
-- **Badge styling**: `CurrencyResultRow.tsx` has a `BADGE_STYLES` map — add entries there when adding new badge types.
-- **JSON imports**: `tsconfig.json` has `resolveJsonModule: true` — `lib/currencies.ts` imports `data/fictional-currencies.json` directly as a typed module.
-- **ExchangeRate-API**: Endpoint `https://v6.exchangerate-api.com/v6/{KEY}/latest/USD`. Response field is `conversion_rates`. Free tier: 1,500 req/month.
+- **App Router**: `page.tsx` es un Server Component que obtiene datos y los pasa como props a `ConverterClient` (componente cliente). Evita el fetch en el cliente en el renderizado inicial.
+- **Tailwind v4**: Usa valores arbitrarios (`bg-[#0D1117]`, `bg-[#161B22]`) — sin archivo de configuración. Todas las variables de tema en `globals.css`.
+- **Variables de entorno**: `EXCHANGERATE_API_KEY` en `.env.local`, sin prefijo `NEXT_PUBLIC_` — solo se lee del lado del servidor.
+- **Tasas de respaldo**: `page.tsx` tiene tasas hardcodeadas como fallback para que la app renderice sin clave de API (útil en desarrollo).
+- **Estilos de badge**: `CurrencyResultRow.tsx` tiene un mapa `BADGE_STYLES` — agregar entradas ahí al añadir nuevos tipos de badge.
+- **Importación de JSON**: `tsconfig.json` tiene `resolveJsonModule: true` — `lib/currencies.ts` importa `data/fictional-currencies.json` directamente como módulo tipado.
+- **ExchangeRate-API**: Endpoint `https://v6.exchangerate-api.com/v6/{KEY}/latest/USD`. El campo de respuesta es `conversion_rates`. Tier gratuito: 1,500 req/mes.
 
+## Reglas de flujo de trabajo
+
+- **Antes de hacer cualquier `git commit` o `git push`, solicitar autorización explícita al usuario.**
+- **Responder siempre en español.**
