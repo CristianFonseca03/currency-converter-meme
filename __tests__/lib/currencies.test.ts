@@ -50,19 +50,16 @@ describe("convertAll", () => {
     expect(result["COP"]).toBeCloseTo(4000);
   });
 
-  it("converts USD to fictional currency", () => {
-    const fictional = FICTIONAL_CURRENCIES[0];
+  it("converts USD to fictional currency (GNS, 1 USD = 1 GNS)", () => {
     const result = convertAll(5, "USD", mockRates);
-    // fromUSD: 5 / usdEquivalent
-    expect(result[fictional.code]).toBeCloseTo(5 / fictional.usdEquivalent!);
+    // usdEquivalent=1 means 1 GNS = 1 USD → fromUSD: 5 / 1 = 5
+    expect(result["GNS"]).toBeCloseTo(5);
   });
 
-  it("converts fictional currency to USD", () => {
-    const fictional = FICTIONAL_CURRENCIES[0];
-    const amount = 3;
-    const result = convertAll(amount, fictional.code, mockRates);
-    // toUSD: amount * usdEquivalent
-    expect(result["USD"]).toBeCloseTo(amount * fictional.usdEquivalent!);
+  it("converts fictional currency to USD (BAL, 1 BAL = 10 USD)", () => {
+    const result = convertAll(2, "BAL", mockRates);
+    // 2 BAL * 10 = 20 USD
+    expect(result["USD"]).toBeCloseTo(20);
   });
 
   it("returns 0 for all currencies when amount is 0", () => {
