@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Conversor de monedas meme 💵
 
-## Getting Started
+Conversor de monedas construido con Next.js 16, TypeScript y Tailwind CSS. Convierte entre monedas reales (USD, COP, MXN) usando la API de ExchangeRate-API, y entre monedas ficticias (Gansito, Balatro, Silksong) cuyas equivalencias están definidas en un JSON editable.
 
-First, run the development server:
+## Monedas soportadas
+
+| Código | Nombre | Tipo |
+|--------|--------|------|
+| USD | Dólar estadounidense | Real |
+| COP | Peso colombiano | Real |
+| MXN | Peso mexicano | Real |
+| GNS | Gansito 🍰 | Ficticia (= 1 USD) |
+| BAL | Balatro 🃏 | Ficticia (= 10 USD) |
+| SLK | Silksong 🕷️ | Ficticia (= 20 USD) |
+
+Para agregar una nueva moneda ficticia, edita `data/fictional-currencies.json` sin tocar código.
+
+## Configuración
+
+1. Clona el repositorio e instala dependencias:
+
+```bash
+npm install
+```
+
+2. Crea el archivo `.env.local` con tu API key de [ExchangeRate-API](https://www.exchangerate-api.com/):
+
+```bash
+EXCHANGERATE_API_KEY=tu_api_key_aqui
+```
+
+> Sin API key el app funciona con tasas de fallback hardcodeadas.
+
+3. Inicia el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Comandos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # Servidor de desarrollo
+npm run build    # Build de producción
+npm run start    # Servidor de producción
+npm run lint     # Linter
+```
 
-## Learn More
+## Despliegue en Vercel
 
-To learn more about Next.js, take a look at the following resources:
+La forma más sencilla es desplegar en [Vercel](https://vercel.com):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Sube el repositorio a GitHub
+2. Importa el proyecto en Vercel desde [vercel.com/new](https://vercel.com/new)
+3. Agrega la variable de entorno `EXCHANGERATE_API_KEY` en **Settings → Environment Variables**
+4. Despliega — Vercel detecta Next.js automáticamente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Despliegue manual
 
-## Deploy on Vercel
+```bash
+npm run build
+npm run start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Requiere Node.js 18+. Las tasas de cambio se cachean 1 hora (`revalidate: 3600`).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Desarrollado por [@cristianfonseca03](https://github.com/CristianFonseca03)

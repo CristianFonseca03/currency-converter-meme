@@ -1,0 +1,23 @@
+[
+  {
+    "code": "GNS",
+    "name": "Gansito",
+    "emoji": "🍰",
+    "badge": "JUEGO",
+    "usdEquivalent": 1
+  },
+  {
+    "code": "BAL",
+    "name": "Balatro",
+    "emoji": "🃏",
+    "badge": "JUEGO",
+    "usdEquivalent": 10
+  },
+  {
+    "code": "SLK",
+    "name": "Silksong",
+    "emoji": "🕷️",
+    "badge": "JUEGO",
+    "usdEquivalent": 20
+  }
+]
