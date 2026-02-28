@@ -6,7 +6,7 @@ async function getRates(): Promise<ExchangeRates> {
 
   if (!apiKey) {
     // Fallback rates for development without an API key
-    return { COP: 4125.43, MXN: 17.08, lastUpdated: "N/A (no API key)" };
+    return { COP: 0, MXN: 0, lastUpdated: "N/A (sin API key)" };
   }
 
   try {
@@ -22,7 +22,7 @@ async function getRates(): Promise<ExchangeRates> {
       lastUpdated: data.time_last_update_utc,
     };
   } catch {
-    return { COP: 4125.43, MXN: 17.08, lastUpdated: "Error fetching rates" };
+    return { COP: 0, MXN: 0, lastUpdated: "Error al obtener tasas" };
   }
 }
 
