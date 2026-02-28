@@ -31,7 +31,7 @@ npm install
 EXCHANGERATE_API_KEY=tu_api_key_aqui
 ```
 
-> Sin API key el app funciona con tasas de fallback hardcodeadas.
+> Sin API key el app funciona pero muestra 0 en las conversiones de monedas reales (COP, MXN).
 
 3. Inicia el servidor de desarrollo:
 
@@ -48,6 +48,7 @@ npm run dev      # Servidor de desarrollo
 npm run build    # Build de producción
 npm run start    # Servidor de producción
 npm run lint     # Linter
+npm test         # Ejecutar pruebas
 ```
 
 ## Despliegue en Vercel

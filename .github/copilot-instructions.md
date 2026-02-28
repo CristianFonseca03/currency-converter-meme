@@ -48,7 +48,6 @@ types/
   currency.ts            # Currency, ExchangeRates, FictionalCurrencyEntry
 public/sounds/
   multhit1.mp3           # Sonido al escribir (Web Audio API con buffer precargado)
-  multhit1.ogg           # Versión original (no usada en producción)
 __tests__/
   lib/currencies.test.ts
   components/{CurrencyInput,CurrencyResultRow,ExchangeResults}.test.tsx
