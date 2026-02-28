@@ -4,7 +4,6 @@ export interface Currency {
   code: string;
   name: string;
   emoji: string;
-  badge: BadgeType;
   fictional: boolean;
   /** For fictional currencies: how many USD is 1 unit worth */
   usdEquivalent?: number;
@@ -14,7 +13,6 @@ export interface FictionalCurrencyEntry {
   code: string;
   name: string;
   emoji: string;
-  badge: BadgeType;
   usdEquivalent: number;
 }
 

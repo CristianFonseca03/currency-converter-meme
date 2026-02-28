@@ -4,16 +4,15 @@ import fictionalData from "@/data/fictional-currencies.json";
 const fictionalEntries = fictionalData as FictionalCurrencyEntry[];
 
 export const REAL_CURRENCIES: Currency[] = [
-  { code: "USD", name: "Dólar estadounidense", emoji: "🇺🇸", badge: "FIAT", fictional: false },
-  { code: "COP", name: "Peso colombiano", emoji: "🇨🇴", badge: "FIAT", fictional: false },
-  { code: "MXN", name: "Peso mexicano", emoji: "🇲🇽", badge: "FIAT", fictional: false },
+  { code: "USD", name: "Dólar estadounidense", emoji: "🇺🇸", fictional: false },
+  { code: "COP", name: "Peso colombiano", emoji: "🇨🇴", fictional: false },
+  { code: "MXN", name: "Peso mexicano", emoji: "🇲🇽", fictional: false },
 ];
 
 export const FICTIONAL_CURRENCIES: Currency[] = fictionalEntries.map((c) => ({
   code: c.code,
   name: c.name,
   emoji: c.emoji,
-  badge: c.badge,
   fictional: true,
   usdEquivalent: c.usdEquivalent,
 }));
