@@ -1,5 +1,7 @@
 # Conversor de monedas meme 💵
 
+🌐 **Demo en vivo:** [currency-converter-meme.vercel.app](https://currency-converter-meme.vercel.app/)
+
 Conversor de monedas construido con Next.js 16, TypeScript y Tailwind CSS. Convierte entre monedas reales (USD, COP, MXN) usando la API de ExchangeRate-API, y entre monedas ficticias (Gansito, Balatro, Silksong) cuyas equivalencias están definidas en un JSON editable.
 
 ## Monedas soportadas
