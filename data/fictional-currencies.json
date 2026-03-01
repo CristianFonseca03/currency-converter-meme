@@ -16,5 +16,11 @@
     "name": "Silksong",
     "emoji": "🕷️",
     "usdEquivalent": 20
+  },
+  {
+    "code": "SPX",
+    "name": "Sub Proxy",
+    "emoji": "🔌",
+    "usdEquivalent": 3.90
   }
 ]
