@@ -54,11 +54,11 @@ export default function CurrencyInput({
   }, []);
 
   return (
-    <div className="bg-[#161B22] rounded-2xl p-5">
+    <div className="bg-[#161B22] rounded-2xl p-4 sm:p-5">
       <p className="text-[#8B949E] text-xs font-semibold tracking-widest mb-3">
         MONTO A CONVERTIR
       </p>
-      <div className="flex gap-3">
+      <div className="flex gap-2 sm:gap-3">
         {/* Amount input */}
         <div className="flex-1 flex items-center bg-[#0D1117] rounded-xl px-4 gap-2 h-12">
           <span className="text-[#8B949E] text-base">$</span>
@@ -80,7 +80,7 @@ export default function CurrencyInput({
             type="button"
             onClick={() => setOpen((o) => !o)}
             className="flex items-center gap-2 bg-[#0D1117] text-white font-semibold
-                       rounded-xl px-4 h-12 min-w-[120px] cursor-pointer"
+                       rounded-xl px-3 sm:px-4 h-12 min-w-[80px] sm:min-w-[120px] cursor-pointer"
           >
             <span>{selected.emoji}</span>
             <span>{selected.code}</span>

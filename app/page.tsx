@@ -30,7 +30,7 @@ export default async function Home() {
   const initialRates = await getRates();
 
   return (
-    <div className="min-h-screen bg-[#0D1117] flex flex-col items-center px-4 py-12">
+    <div className="min-h-screen bg-[#0D1117] flex flex-col items-center px-4 py-6 sm:py-12">
       {/* Converter */}
       <main className="w-full max-w-lg">
         <ConverterClient initialRates={initialRates} />
