@@ -54,20 +54,20 @@ export default function CurrencyInput({
   }, []);
 
   return (
-    <div className="bg-[#161B22] rounded-2xl p-5">
-      <p className="text-[#8B949E] text-xs font-semibold tracking-widest mb-3">
+    <div className="bg-[#161B22] rounded-2xl p-4 sm:p-5">
+      <p className="text-[#8B949E] text-[10px] sm:text-xs font-semibold tracking-widest mb-3">
         MONTO A CONVERTIR
       </p>
-      <div className="flex gap-3">
+      <div className="flex gap-2 sm:gap-3">
         {/* Amount input */}
-        <div className="flex-1 flex items-center bg-[#0D1117] rounded-xl px-4 gap-2 h-12">
-          <span className="text-[#8B949E] text-base">$</span>
+        <div className="flex-1 flex items-center bg-[#0D1117] rounded-xl px-3 sm:px-4 gap-2 h-11 sm:h-12 min-w-0">
+          <span className="text-[#8B949E] text-sm sm:text-base flex-shrink-0">$</span>
           <input
             type="number"
             min="0"
             value={amount}
             onChange={(e) => { playKeySound(); onAmountChange(e.target.value); }}
-            className="flex-1 bg-transparent text-white text-xl font-bold outline-none
+            className="flex-1 bg-transparent text-white text-lg sm:text-xl font-bold outline-none min-w-0
                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none
                        [&::-webkit-inner-spin-button]:appearance-none"
             placeholder="0.00"
@@ -75,33 +75,34 @@ export default function CurrencyInput({
         </div>
 
         {/* Currency selector */}
-        <div className="relative flex flex-col" ref={dropdownRef}>
+        <div className="relative flex flex-col flex-shrink-0" ref={dropdownRef}>
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="flex items-center gap-2 bg-[#0D1117] text-white font-semibold
-                       rounded-xl px-4 h-12 min-w-[120px] cursor-pointer"
+            className="flex items-center gap-1.5 sm:gap-2 bg-[#0D1117] text-white font-semibold
+                       rounded-xl px-3 sm:px-4 h-11 sm:h-12 min-w-[90px] sm:min-w-[120px] cursor-pointer"
           >
-            <span>{selected.emoji}</span>
-            <span>{selected.code}</span>
-            <span className="text-[#8B949E] ml-1">⌄</span>
+            <span className="text-base sm:text-lg">{selected.emoji}</span>
+            <span className="text-sm sm:text-base">{selected.code}</span>
+            <span className="text-[#8B949E] ml-auto text-xs">▾</span>
           </button>
 
           {open && (
             <div className="absolute right-0 top-[calc(100%+6px)] z-50 bg-[#161B22] border
-                            border-[#30363D] rounded-xl overflow-hidden shadow-xl min-w-[150px]">
+                            border-[#30363D] rounded-xl overflow-hidden shadow-xl min-w-[160px] sm:min-w-[180px]
+                            max-h-56 sm:max-h-72 overflow-y-auto">
               {ALL_CURRENCIES.map((c) => (
                 <button
                   key={c.code}
                   type="button"
                   onClick={() => { onCurrencyChange(c.code); setOpen(false); }}
-                  className={`flex items-center gap-2 w-full px-4 py-2.5 text-sm font-medium
+                  className={`flex items-center gap-2 w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-medium
                               hover:bg-[#21262D] transition-colors
                               ${c.code === selectedCode ? "text-blue-400" : "text-white"}`}
                 >
-                  <span>{c.emoji}</span>
-                  <span>{c.code}</span>
-                  <span className="text-[#8B949E] text-xs ml-1">{c.name}</span>
+                  <span className="flex-shrink-0">{c.emoji}</span>
+                  <span className="flex-shrink-0 font-bold">{c.code}</span>
+                  <span className="text-[#8B949E] text-[10px] sm:text-xs ml-1 truncate">{c.name}</span>
                 </button>
               ))}
             </div>

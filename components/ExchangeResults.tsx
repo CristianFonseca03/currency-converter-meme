@@ -15,10 +15,10 @@ export default function ExchangeResults({
   const targetCurrencies = ALL_CURRENCIES.filter((c) => c.code !== selectedCode);
 
   return (
-    <div className="bg-[#161B22] rounded-2xl px-5 pb-2">
+    <div className="bg-[#161B22] rounded-2xl px-4 sm:px-5 pb-2">
       {/* Header */}
-      <div className="flex items-center justify-between py-4">
-        <p className="text-[#8B949E] text-xs font-semibold tracking-widest">RESULTADOS</p>
+      <div className="flex items-center justify-between py-3.5 sm:py-4">
+        <p className="text-[#8B949E] text-[10px] sm:text-xs font-semibold tracking-widest">RESULTADOS</p>
       </div>
 
       {/* Rows */}
@@ -37,6 +37,7 @@ export default function ExchangeResults({
         <p className="text-right text-[10px] text-[#4B5563] py-3 tracking-wide">
           Actualizado: {lastUpdated}
         </p>
-      )}    </div>
+      )}
+    </div>
   );
 }

@@ -30,14 +30,31 @@ export default async function Home() {
   const initialRates = await getRates();
 
   return (
-    <div className="min-h-screen bg-[#0D1117] flex flex-col items-center px-4 py-12">
+    <div className="min-h-screen bg-[#0D1117] flex flex-col items-center px-3 sm:px-4 py-8 sm:py-12">
+      {/* Header */}
+      <header className="w-full max-w-lg mb-6 sm:mb-8">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-lg sm:text-xl flex-shrink-0">
+            💱
+          </div>
+          <div>
+            <h1 className="text-white font-bold text-base sm:text-lg leading-tight">
+              Currency Converter
+            </h1>
+            <p className="text-[#4B5563] text-[10px] sm:text-xs tracking-widest font-medium">
+              MEME EDITION
+            </p>
+          </div>
+        </div>
+      </header>
+
       {/* Converter */}
       <main className="w-full max-w-lg">
         <ConverterClient initialRates={initialRates} />
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto pt-16">
+      <footer className="mt-auto pt-10 sm:pt-16">
         <a
           href="https://github.com/CristianFonseca03"
           target="_blank"
