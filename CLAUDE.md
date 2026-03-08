@@ -40,6 +40,7 @@ Sin esta clave, la app funciona pero las conversiones FIAT muestran 0 (fallback 
 - **Audio**: `CurrencyInput.tsx` usa Web Audio API para reproducir sonido en cada tecla; mockear `global.AudioContext` y `global.fetch` en tests
 - **TypeScript strict**: todos los tipos explícitos en `types/currency.ts`
 - **Tailwind v4**: sin `tailwind.config.ts`; configuración en `app/globals.css` con valores arbitrarios
+- **Dark mode**: clase `.dark` en `<html>` vía `@custom-variant dark` en `globals.css`; por defecto oscuro; `ThemeToggle.tsx` gestiona el toggle y persiste en `localStorage`
 
 ## Tests
 

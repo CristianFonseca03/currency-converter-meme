@@ -54,20 +54,20 @@ export default function CurrencyInput({
   }, []);
 
   return (
-    <div className="bg-[#161B22] rounded-2xl p-4 sm:p-5">
-      <p className="text-[#8B949E] text-[10px] sm:text-xs font-semibold tracking-widest mb-3">
+    <div className="bg-white dark:bg-[#161B22] rounded-2xl p-4 sm:p-5">
+      <p className="text-[#57606A] dark:text-[#8B949E] text-[10px] sm:text-xs font-semibold tracking-widest mb-3">
         MONTO A CONVERTIR
       </p>
       <div className="flex gap-2 sm:gap-3">
         {/* Amount input */}
-        <div className="flex-1 flex items-center bg-[#0D1117] rounded-xl px-3 sm:px-4 gap-2 h-11 sm:h-12 min-w-0">
-          <span className="text-[#8B949E] text-sm sm:text-base flex-shrink-0">$</span>
+        <div className="flex-1 flex items-center bg-[#F0F2F5] dark:bg-[#0D1117] rounded-xl px-3 sm:px-4 gap-2 h-11 sm:h-12 min-w-0">
+          <span className="text-[#57606A] dark:text-[#8B949E] text-sm sm:text-base flex-shrink-0">$</span>
           <input
             type="number"
             min="0"
             value={amount}
             onChange={(e) => { playKeySound(); onAmountChange(e.target.value); }}
-            className="flex-1 bg-transparent text-white text-lg sm:text-xl font-bold outline-none min-w-0
+            className="flex-1 bg-transparent text-[#1C2128] dark:text-white text-lg sm:text-xl font-bold outline-none min-w-0
                        [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none
                        [&::-webkit-inner-spin-button]:appearance-none"
             placeholder="0.00"
@@ -79,17 +79,17 @@ export default function CurrencyInput({
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="flex items-center gap-1.5 sm:gap-2 bg-[#0D1117] text-white font-semibold
+            className="flex items-center gap-1.5 sm:gap-2 bg-[#F0F2F5] dark:bg-[#0D1117] text-[#1C2128] dark:text-white font-semibold
                        rounded-xl px-3 sm:px-4 h-11 sm:h-12 min-w-[90px] sm:min-w-[120px] cursor-pointer"
           >
             <span className="text-base sm:text-lg">{selected.emoji}</span>
             <span className="text-sm sm:text-base">{selected.code}</span>
-            <span className="text-[#8B949E] ml-auto text-xs">▾</span>
+            <span className="text-[#57606A] dark:text-[#8B949E] ml-auto text-xs">▾</span>
           </button>
 
           {open && (
-            <div className="absolute right-0 top-[calc(100%+6px)] z-50 bg-[#161B22] border
-                            border-[#30363D] rounded-xl overflow-hidden shadow-xl min-w-[160px] sm:min-w-[180px]
+            <div className="absolute right-0 top-[calc(100%+6px)] z-50 bg-white dark:bg-[#161B22] border
+                            border-[#D0D7DE] dark:border-[#30363D] rounded-xl overflow-hidden shadow-xl min-w-[160px] sm:min-w-[180px]
                             max-h-56 sm:max-h-72 overflow-y-auto">
               {ALL_CURRENCIES.map((c) => (
                 <button
@@ -97,12 +97,12 @@ export default function CurrencyInput({
                   type="button"
                   onClick={() => { onCurrencyChange(c.code); setOpen(false); }}
                   className={`flex items-center gap-2 w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-medium
-                              hover:bg-[#21262D] transition-colors
-                              ${c.code === selectedCode ? "text-blue-400" : "text-white"}`}
+                              hover:bg-[#F3F4F6] dark:hover:bg-[#21262D] transition-colors
+                              ${c.code === selectedCode ? "text-blue-500 dark:text-blue-400" : "text-[#1C2128] dark:text-white"}`}
                 >
                   <span className="flex-shrink-0">{c.emoji}</span>
                   <span className="flex-shrink-0 font-bold">{c.code}</span>
-                  <span className="text-[#8B949E] text-[10px] sm:text-xs ml-1 truncate">{c.name}</span>
+                  <span className="text-[#57606A] dark:text-[#8B949E] text-[10px] sm:text-xs ml-1 truncate">{c.name}</span>
                 </button>
               ))}
             </div>

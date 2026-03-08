@@ -2,7 +2,7 @@
 
 🌐 **Demo en vivo:** [currency-converter-meme.vercel.app](https://currency-converter-meme.vercel.app/)
 
-Conversor de monedas construido con Next.js 16, TypeScript y Tailwind CSS. Convierte entre monedas reales (USD, COP, MXN) usando la API de ExchangeRate-API, y entre monedas ficticias (Gansito, Balatro, Silksong) cuyas equivalencias están definidas en un JSON editable.
+Conversor de monedas construido con Next.js 16, TypeScript y Tailwind CSS. Convierte entre monedas reales (USD, COP, MXN) usando la API de ExchangeRate-API, y entre monedas ficticias (Gansito, Balatro, Silksong) cuyas equivalencias están definidas en un JSON editable. Incluye modo claro/oscuro con preferencia persistente en `localStorage`.
 
 ## Monedas soportadas
 
@@ -16,6 +16,10 @@ Conversor de monedas construido con Next.js 16, TypeScript y Tailwind CSS. Convi
 | SLK | Silksong 🕷️ | Ficticia (= 20 USD) |
 
 Para agregar una nueva moneda ficticia, edita `data/fictional-currencies.json` sin tocar código.
+
+## Tema visual
+
+La app incluye un botón ☀️/🌙 en el header para alternar entre modo oscuro (por defecto) y modo claro. La preferencia se guarda automáticamente en `localStorage` y se restaura en cada visita.
 
 ## Configuración
 

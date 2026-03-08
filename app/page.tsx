@@ -1,4 +1,5 @@
 import ConverterClient from "@/components/ConverterClient";
+import ThemeToggle from "@/components/ThemeToggle";
 import type { ExchangeRates } from "@/types/currency";
 
 async function getRates(): Promise<ExchangeRates> {
@@ -30,21 +31,22 @@ export default async function Home() {
   const initialRates = await getRates();
 
   return (
-    <div className="min-h-screen bg-[#0D1117] flex flex-col items-center px-3 sm:px-4 py-8 sm:py-12">
+    <div className="min-h-screen bg-[#F6F8FA] dark:bg-[#0D1117] flex flex-col items-center px-3 sm:px-4 py-8 sm:py-12">
       {/* Header */}
       <header className="w-full max-w-lg mb-6 sm:mb-8">
         <div className="flex items-center gap-3">
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-lg sm:text-xl flex-shrink-0">
             💱
           </div>
-          <div>
-            <h1 className="text-white font-bold text-base sm:text-lg leading-tight">
+          <div className="flex-1">
+            <h1 className="text-[#1C2128] dark:text-white font-bold text-base sm:text-lg leading-tight">
               Currency Converter
             </h1>
-            <p className="text-[#4B5563] text-[10px] sm:text-xs tracking-widest font-medium">
+            <p className="text-[#8C959F] dark:text-[#4B5563] text-[10px] sm:text-xs tracking-widest font-medium">
               MEME EDITION
             </p>
           </div>
+          <ThemeToggle />
         </div>
       </header>
 
@@ -59,7 +61,7 @@ export default async function Home() {
           href="https://github.com/CristianFonseca03"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#4B5563] text-[10px] tracking-[0.2em] font-medium hover:text-white transition-colors"
+          className="text-[#8C959F] dark:text-[#4B5563] text-[10px] tracking-[0.2em] font-medium hover:text-[#1C2128] dark:hover:text-white transition-colors"
         >
           @cristianfonseca03
         </a>
@@ -67,4 +69,3 @@ export default async function Home() {
     </div>
   );
 }
-
