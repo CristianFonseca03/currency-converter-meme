@@ -31,19 +31,19 @@ describe("CurrencyResultRow", () => {
 
   it("renders the currency emoji", () => {
     render(<CurrencyResultRow currency={realCurrency} convertedAmount={1} />);
-    expect(screen.getByText("🇨🇴")).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "🇨🇴" })).toBeInTheDocument();
   });
 
   it("applies blue color class for fictional currencies", () => {
     render(<CurrencyResultRow currency={fictionalCurrency} convertedAmount={5} />);
     const amountEl = screen.getByText("5.00");
-    expect(amountEl).toHaveClass("text-blue-400");
+    expect(amountEl).toHaveClass("dark:text-blue-400");
   });
 
   it("applies white color class for real currencies", () => {
     render(<CurrencyResultRow currency={realCurrency} convertedAmount={100} />);
     const amountEl = screen.getByText("100.00");
-    expect(amountEl).toHaveClass("text-white");
+    expect(amountEl).toHaveClass("dark:text-white");
   });
 
   it("formats large numbers with thousands separator", () => {

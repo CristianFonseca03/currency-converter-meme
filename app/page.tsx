@@ -1,5 +1,6 @@
 import ConverterClient from "@/components/ConverterClient";
 import ThemeToggle from "@/components/ThemeToggle";
+import TwemojiIcon from "@/components/TwemojiIcon";
 import type { ExchangeRates } from "@/types/currency";
 
 async function getRates(): Promise<ExchangeRates> {
@@ -35,8 +36,8 @@ export default async function Home() {
       {/* Header */}
       <header className="w-full max-w-lg mb-6 sm:mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-lg sm:text-xl flex-shrink-0">
-            💱
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+            <TwemojiIcon emoji="💱" size={22} />
           </div>
           <div className="flex-1">
             <h1 className="text-[#1C2128] dark:text-white font-bold text-base sm:text-lg leading-tight">
