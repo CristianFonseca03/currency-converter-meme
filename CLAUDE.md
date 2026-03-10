@@ -33,6 +33,8 @@ Sin esta clave, la app funciona pero las conversiones FIAT muestran 0 (fallback 
 
 **Agregar una moneda ficticia:** solo editar `data/fictional-currencies.json` con `{ code, name, emoji, usdEquivalent }`.
 
+**Emojis en monedas ficticias:** usar únicamente emojis con soporte universal (Unicode ≤ 13.0, introducidos antes de 2021). Evitar emojis de Unicode 14.0+ (2021) en adelante, ya que no se renderizan en plataformas antiguas. El proyecto usa Twemoji para normalizar el renderizado, pero el campo `emoji` en el JSON debe ser un carácter de amplio soporte. Referencia rápida de versiones seguras: 🍰🃏🕷️🔌🎮🏆🐉🌮 — todos anteriores a Unicode 14.
+
 ## Convenciones clave
 
 - **Alias de ruta**: usar `@/` para importar desde la raíz (ej: `@/lib/currencies`)
