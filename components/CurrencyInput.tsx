@@ -79,7 +79,19 @@ export default function CurrencyInput({
           />
           <button
             type="button"
-            onClick={() => setIsMuted((m) => !m)}
+            onClick={() => {
+              if (isMuted) {
+                const ctx = audioCtxRef.current;
+                const buffer = audioBufferRef.current;
+                if (ctx && buffer) {
+                  const source = ctx.createBufferSource();
+                  source.buffer = buffer;
+                  source.connect(ctx.destination);
+                  source.start(0);
+                }
+              }
+              setIsMuted((m) => !m);
+            }}
             className="flex-shrink-0 text-[#57606A] dark:text-[#8B949E] hover:text-[#1C2128] dark:hover:text-white text-base transition-colors"
             aria-label={isMuted ? "Activar sonido" : "Silenciar"}
           >
