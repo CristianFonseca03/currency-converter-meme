@@ -13,8 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Conversor de monedas meme",
-  description: "Simplified Currency Converter Engine",
+  title: "Currency Converter — Meme Edition",
+  description: "Convierte monedas reales y ficticias: Gansito, Balatro, Silksong y más. Gratis, sin registro.",
+  openGraph: {
+    title: "Currency Converter — Meme Edition",
+    description: "Convierte monedas reales y ficticias: Gansito, Balatro, Silksong y más.",
+    url: "https://currency-converter-meme.vercel.app/",
+    siteName: "Currency Converter Meme",
+    locale: "es_MX",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Currency Converter — Meme Edition",
+    description: "Convierte monedas reales y ficticias: Gansito, Balatro, Silksong y más.",
+  },
 };
 
 export default function RootLayout({

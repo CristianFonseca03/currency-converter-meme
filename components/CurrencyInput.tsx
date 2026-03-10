@@ -17,7 +17,9 @@ export default function CurrencyInput({
   onCurrencyChange,
 }: CurrencyInputProps) {
   const [open, setOpen] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
   const selected = ALL_CURRENCIES.find((c) => c.code === selectedCode)!;
@@ -44,6 +46,7 @@ export default function CurrencyInput({
   }, []);
 
   const playKeySound = useCallback(() => {
+    if (isMuted) return;
     const ctx = audioCtxRef.current;
     const buffer = audioBufferRef.current;
     if (!ctx || !buffer) return;
@@ -51,7 +54,7 @@ export default function CurrencyInput({
     source.buffer = buffer;
     source.connect(ctx.destination);
     source.start(0);
-  }, []);
+  }, [isMuted]);
 
   return (
     <div className="bg-white dark:bg-[#161B22] rounded-2xl p-4 sm:p-5">
@@ -63,6 +66,7 @@ export default function CurrencyInput({
         <div className="flex-1 flex items-center bg-[#F0F2F5] dark:bg-[#0D1117] rounded-xl px-3 sm:px-4 gap-2 h-11 sm:h-12 min-w-0">
           <span className="text-[#57606A] dark:text-[#8B949E] text-sm sm:text-base flex-shrink-0">$</span>
           <input
+            ref={inputRef}
             type="number"
             min="0"
             value={amount}
@@ -72,6 +76,14 @@ export default function CurrencyInput({
                        [&::-webkit-inner-spin-button]:appearance-none"
             placeholder="0.00"
           />
+          <button
+            type="button"
+            onClick={() => setIsMuted((m) => !m)}
+            className="flex-shrink-0 text-[#57606A] dark:text-[#8B949E] hover:text-[#1C2128] dark:hover:text-white text-base transition-colors"
+            aria-label={isMuted ? "Activar sonido" : "Silenciar"}
+          >
+            {isMuted ? "🔇" : "🔊"}
+          </button>
         </div>
 
         {/* Currency selector */}
@@ -95,7 +107,7 @@ export default function CurrencyInput({
                 <button
                   key={c.code}
                   type="button"
-                  onClick={() => { onCurrencyChange(c.code); setOpen(false); }}
+                  onClick={() => { onCurrencyChange(c.code); setOpen(false); inputRef.current?.focus(); }}
                   className={`flex items-center gap-2 w-full px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-medium
                               hover:bg-[#F3F4F6] dark:hover:bg-[#21262D] transition-colors
                               ${c.code === selectedCode ? "text-blue-500 dark:text-blue-400" : "text-[#1C2128] dark:text-white"}`}
