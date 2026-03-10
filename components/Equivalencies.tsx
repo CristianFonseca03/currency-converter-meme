@@ -1,5 +1,6 @@
 import { ALL_CURRENCIES, convertAll } from "@/lib/currencies";
 import type { ExchangeRates } from "@/types/currency";
+import TwemojiIcon from "@/components/TwemojiIcon";
 
 interface EquivalenciesProps {
   rates: ExchangeRates;
@@ -29,7 +30,7 @@ export default function Equivalencies({ rates }: EquivalenciesProps) {
                 {isFiat ? "1 USD →" : `1 ${c.code} →`}
               </p>
               <div className="flex items-center gap-1 sm:gap-1.5 min-w-0">
-                <span className="text-sm sm:text-base flex-shrink-0">{c.emoji}</span>
+                <TwemojiIcon emoji={c.emoji} size={18} className="flex-shrink-0" />
                 <span className="text-[#1C2128] dark:text-white font-bold text-xs sm:text-sm tabular-nums truncate">
                   {formatted}
                 </span>

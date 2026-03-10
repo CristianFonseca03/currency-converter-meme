@@ -50,7 +50,7 @@ describe("CurrencyInput", () => {
 
   it("opens currency dropdown on button click", async () => {
     render(<CurrencyInput {...defaultProps} />);
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("button", { name: /USD/ });
     await userEvent.click(button);
     expect(screen.getByText("COP")).toBeInTheDocument();
     expect(screen.getByText("MXN")).toBeInTheDocument();
@@ -59,14 +59,14 @@ describe("CurrencyInput", () => {
   it("calls onCurrencyChange when selecting a currency", async () => {
     const onCurrencyChange = jest.fn();
     render(<CurrencyInput {...defaultProps} onCurrencyChange={onCurrencyChange} />);
-    await userEvent.click(screen.getByRole("button"));
+    await userEvent.click(screen.getByRole("button", { name: /USD/ }));
     await userEvent.click(screen.getByText("COP"));
     expect(onCurrencyChange).toHaveBeenCalledWith("COP");
   });
 
   it("closes dropdown after selecting a currency", async () => {
     render(<CurrencyInput {...defaultProps} />);
-    await userEvent.click(screen.getByRole("button"));
+    await userEvent.click(screen.getByRole("button", { name: /USD/ }));
     await userEvent.click(screen.getByText("COP"));
     expect(screen.queryByText("MXN")).not.toBeInTheDocument();
   });

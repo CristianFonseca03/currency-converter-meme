@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ALL_CURRENCIES } from "@/lib/currencies";
+import TwemojiIcon from "@/components/TwemojiIcon";
 
 interface CurrencyInputProps {
   amount: string;
@@ -82,7 +83,7 @@ export default function CurrencyInput({
             className="flex-shrink-0 text-[#57606A] dark:text-[#8B949E] hover:text-[#1C2128] dark:hover:text-white text-base transition-colors"
             aria-label={isMuted ? "Activar sonido" : "Silenciar"}
           >
-            {isMuted ? "🔇" : "🔊"}
+            <TwemojiIcon emoji={isMuted ? "🔇" : "🔊"} size={18} />
           </button>
         </div>
 
@@ -94,7 +95,7 @@ export default function CurrencyInput({
             className="flex items-center gap-1.5 sm:gap-2 bg-[#F0F2F5] dark:bg-[#0D1117] text-[#1C2128] dark:text-white font-semibold
                        rounded-xl px-3 sm:px-4 h-11 sm:h-12 min-w-[90px] sm:min-w-[120px] cursor-pointer"
           >
-            <span className="text-base sm:text-lg">{selected.emoji}</span>
+            <TwemojiIcon emoji={selected.emoji} size={22} />
             <span className="text-sm sm:text-base">{selected.code}</span>
             <span className="text-[#57606A] dark:text-[#8B949E] ml-auto text-xs">▾</span>
           </button>
@@ -112,7 +113,7 @@ export default function CurrencyInput({
                               hover:bg-[#F3F4F6] dark:hover:bg-[#21262D] transition-colors
                               ${c.code === selectedCode ? "text-blue-500 dark:text-blue-400" : "text-[#1C2128] dark:text-white"}`}
                 >
-                  <span className="flex-shrink-0">{c.emoji}</span>
+                  <TwemojiIcon emoji={c.emoji} size={18} className="flex-shrink-0" />
                   <span className="flex-shrink-0 font-bold">{c.code}</span>
                   <span className="text-[#57606A] dark:text-[#8B949E] text-[10px] sm:text-xs ml-1 truncate">{c.name}</span>
                 </button>
