@@ -4,17 +4,18 @@ import { useEffect, useState } from "react";
 import TwemojiIcon from "@/components/TwemojiIcon";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    if (typeof window === "undefined") return true;
+    return localStorage.getItem("theme") !== "light";
+  });
 
   useEffect(() => {
-    const stored = localStorage.getItem("theme");
-    if (stored === "light") {
-      document.documentElement.classList.remove("dark");
-      setIsDark(false);
-    } else {
+    if (isDark) {
       document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
-  }, []);
+  }, [isDark]);
 
   const toggle = () => {
     setIsDark((prev) => {
