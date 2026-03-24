@@ -28,5 +28,17 @@
     "name": "AK-cartel",
     "emoji": "🐉",
     "usdEquivalent": 19.4
+  },
+  {
+    "code": "FG60",
+    "name": "Pack Fotogramas 60",
+    "emoji": "🎞️",
+    "usdEquivalent": 1
+  },
+  {
+    "code": "FG1K",
+    "name": "Pack Fotogramas 1980",
+    "emoji": "🎬",
+    "usdEquivalent": 16
   }
 ]
