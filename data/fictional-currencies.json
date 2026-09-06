@@ -30,15 +30,15 @@
     "usdEquivalent": 19.4
   },
   {
-    "code": "FG60",
-    "name": "Pack Fotogramas 60",
-    "emoji": "🎞️",
-    "usdEquivalent": 1
+    "code": "POL",
+    "name": "Pollo Asado",
+    "emoji": "🍗",
+    "usdEquivalent": 7.03
   },
   {
-    "code": "FG1K",
-    "name": "Pack Fotogramas 1980",
-    "emoji": "🎬",
-    "usdEquivalent": 16
+    "code": "RDR",
+    "name": "Red Dead Redemption 2",
+    "emoji": "🤠",
+    "usdEquivalent": 16.16
   }
 ]
